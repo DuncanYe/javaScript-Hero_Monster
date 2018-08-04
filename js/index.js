@@ -124,5 +124,14 @@ function addSkillEvent(){
   }
 }
 
+function startToPlay(){
+  var play = document.getElementById("play");
+  var screen = document.getElementById("screen");
+  play.onclick = function() {
+    play.style.display = "none";
+    screen.style.display = "block";
+    addSkillEvent();
+  }
+}
 
-addSkillEvent();
+startToPlay();
