@@ -60,7 +60,7 @@ class Monster extends BaseCharacter {
     
     this.hpElement.textContent = this.hp;
     this.maxHpElement.textContent = this.maxHp;
-    
+
     console.log('登登～ ' + (this.name) + ' 出場')
   }
   attack(character){
@@ -75,3 +75,14 @@ class Monster extends BaseCharacter {
 
 var hero = new Hero('Duncan', 130, 30);
 var monster = new Monster('Monster', 120, 20);
+var rounds = 10;
+
+
+function addSkillEvent(){
+  var skill = getElementById('skill')
+  skill.onclick = function() {
+    heroAttack();
+  }
+}
+addSkillEvent();
+
