@@ -77,15 +77,6 @@ var hero = new Hero('Duncan', 130, 30);
 var monster = new Monster('Monster', 120, 20);
 var rounds = 10;
 
-
-function addSkillEvent(){
-  var skill = getElementById('skill')
-  skill.onclick = function() {
-    heroAttack();
-  }
-}
-addSkillEvent();
-
 // 十回合限制
 function endTurn() {
   rounds--;
@@ -94,3 +85,44 @@ function endTurn() {
     // 遊戲結束
   }
 }
+
+function heroAttack() {
+  document.getElementsByClassName("skill-block")[0].style.display = "none";
+
+
+  setTimeout(function(){
+    hero.element.classList.add("attacking");
+    setTimeout(function() {
+      hero.attack(monster);
+      hero.element.classList.remove("attacking");
+    }, 500);
+  }, 100);
+
+  setTimeout(function() {
+    if (monster.alive) {
+      monster.element.classList.add("attacking");
+      setTimeout(function() {
+        monster.attack(hero);
+        monster.element.classList.remove("attacking");
+        endTurn();
+        if (hero.alive == false ) {
+          // 遊戲結束
+        } else {
+          document.getElementsByClassName("skill-block")[0].style.display = "block";
+        }
+      }, 500)
+    } else {
+      // 遊戲結束
+    }
+  }, 1200);
+}
+
+function addSkillEvent(){
+  var skill = document.getElementById("skill");
+  skill.onclick = function() {
+    heroAttack();
+  }
+}
+
+
+addSkillEvent();
