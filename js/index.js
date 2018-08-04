@@ -86,3 +86,11 @@ function addSkillEvent(){
 }
 addSkillEvent();
 
+// 十回合限制
+function endTurn() {
+  rounds--;
+  document.getElementById('round-num').textContent = rounds;
+  if (rounds < 1) {
+    // 遊戲結束
+  }
+}
