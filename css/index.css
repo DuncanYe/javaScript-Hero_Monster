@@ -47,8 +47,6 @@
   width: 49.9%;
   height: 50px;
   display: inline-block;
-  -webkit-backface-visibility: hidden;
-  -webkit-transform: scale(1);
 }
 
 .hp-bar {
@@ -57,7 +55,6 @@
   height: 30px;
   background-color: red;
   -webkit-backface-visibility: hidden;
-  -webkit-transform: scale(1);
 }
 
 /* 扣血效果的白色區塊，蓋在紅色去塊上面 */
