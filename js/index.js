@@ -92,7 +92,7 @@ class Monster extends BaseCharacter {
   }
 }
 
-var hero = new Hero('Duncan', 130, 30);
+var hero = new Hero('Duncan', 130, 1000);
 var monster = new Monster('Monster', 120, 20);
 var rounds = 10;
 
@@ -101,7 +101,7 @@ function endTurn() {
   rounds--;
   document.getElementById('round-num').textContent = rounds;
   if (rounds < 1) {
-    // 遊戲結束
+    finish();
   }
 }
 
@@ -125,13 +125,13 @@ function heroAttack() {
         monster.element.classList.remove("attacking");
         endTurn();
         if (hero.alive == false ) {
-          // 遊戲結束
+          finish();
         } else {
           document.getElementsByClassName("skill-block")[0].style.display = "block";
         }
       }, 500)
     } else {
-      // 遊戲結束
+      finish();
     }
   }, 1200);
 }
@@ -149,6 +149,16 @@ function startToPlay(){
   play.onclick = function() {
     play.style.display = "none";
     screen.style.display = "block";
+  }
+}
+
+function finish() {
+  var finish = document.getElementById("dialog")
+  finish.style.display = "block";
+  if (hero == false){
+    dialog.classList.add("lose");
+  } else {
+    dialog.classList.add("win");
   }
 }
 
