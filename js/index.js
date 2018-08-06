@@ -1,10 +1,11 @@
 class BaseCharacter{
-  constructor(name, hp, ap){
+  constructor(name, hp, ap, cp){
     this.name = name;
     this.hp = hp;
     this.ap = ap;
     this.maxHp = hp;
     this.alive = true;
+    this.cp = cp;
   }
   attack(character, damage){
     if (this.alive == false) {
@@ -47,8 +48,8 @@ class BaseCharacter{
 }
 
 class Hero extends BaseCharacter {
-  constructor(name, hp, ap){
-    super(name, hp, ap);
+  constructor(name, hp, ap, cp){
+    super(name, hp, ap, cp);
     this.element = document.getElementById("hero-image-block");
     this.hpElement = document.getElementById("hero-hp");
     this.maxHpElement = document.getElementById("hero-max-hp");
@@ -65,6 +66,12 @@ class Hero extends BaseCharacter {
   }
   getHurt(damage) {
     super.getHurt(damage);
+    this.updateHtml(this.hpElement, this.hurtElement);
+  }
+
+  heal(){
+    this.hp += this.cp
+    this.hp > this.maxHp ? this.hp = this.maxHp : this.hp;
     this.updateHtml(this.hpElement, this.hurtElement);
   }
 }
@@ -92,7 +99,7 @@ class Monster extends BaseCharacter {
   }
 }
 
-var hero = new Hero('Duncan', 130, 1000);
+var hero = new Hero('Duncan', 130, 30, 30);
 var monster = new Monster('Monster', 120, 20);
 var rounds = 10;
 
@@ -107,7 +114,6 @@ function endTurn() {
 
 function heroAttack() {
   document.getElementsByClassName("skill-block")[0].style.display = "none";
-
 
   setTimeout(function(){
     hero.element.classList.add("attacking");
@@ -136,10 +142,32 @@ function heroAttack() {
   }, 1200);
 }
 
+function heroHeal() {
+  document.getElementsByClassName("skill-block")[0].style.display = "none";
+
+  setTimeout(function() {
+    hero.heal()
+  }, 300)
+
+  setTimeout(function() {
+    monster.element.classList.add("attacking");
+    setTimeout(function() {
+      monster.attack(hero);
+      monster.element.classList.remove("attacking");
+      endTurn();
+      document.getElementsByClassName("skill-block")[0].style.display = "block";
+    }, 500)
+  }, 700)
+}
+
 function addSkillEvent(){
   var skill = document.getElementById("skill");
+  var heal = document.getElementById("heal")
   skill.onclick = function() {
     heroAttack();
+  }
+  heal.onclick = function() {
+    heroHeal();
   }
 }
 
