@@ -45,6 +45,11 @@ class BaseCharacter{
     hpElement.textContent = this.hp;
     hurtElement.style.width = (100 - this.hp / this.maxHp * 100) + "%";
   }
+
+  heal() {
+    this.hp += this.cp
+    this.hp > this.maxHp ? this.hp = this.maxHp : this.hp;
+  }
 }
 
 class Hero extends BaseCharacter {
@@ -70,9 +75,9 @@ class Hero extends BaseCharacter {
   }
 
   heal(){
-    this.hp += this.cp
-    this.hp > this.maxHp ? this.hp = this.maxHp : this.hp;
+    super.heal();
     this.updateHtml(this.hpElement, this.hurtElement);
+    console.log(this.name + " 補Hp " + this.cp)
   }
 }
 
@@ -87,7 +92,7 @@ class Monster extends BaseCharacter {
     this.hpElement.textContent = this.hp;
     this.maxHpElement.textContent = this.maxHp;
 
-    console.log('登登～ ' + (this.name) + ' 出場')
+    console.log('登登～ 怪獸 ' + (this.name) + ' 出場')
   }
   attack(character){
     var damage = Math.random() * (this.ap / 2) + (this.ap / 2);
