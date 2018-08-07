@@ -188,11 +188,19 @@ function heroHeal() {
 function addSkillEvent(){
   var skill = document.getElementById("skill");
   var heal = document.getElementById("heal")
+
   skill.onclick = function() {
     heroAttack();
   }
+
   heal.onclick = function() {
     heroHeal();
+  }
+  
+  document.onkeyup = function(event) {
+    var key = String.fromCharCode(event.keyCode);
+    if(key == 'A') heroAttack();
+    if(key == 'D') heroHeal();
   }
 }
 
