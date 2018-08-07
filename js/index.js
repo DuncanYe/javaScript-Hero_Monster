@@ -196,11 +196,18 @@ function addSkillEvent(){
   heal.onclick = function() {
     heroHeal();
   }
-  
+
+  var state_a_down = false;
   document.onkeyup = function(event) {
     var key = String.fromCharCode(event.keyCode);
-    if(key == 'A') heroAttack();
-    if(key == 'D') heroHeal();
+    if(key == 'A' && !state_a_down ) {
+      state_a_down = true;
+      heroAttack();
+    } 
+    if(key == 'D' && !state_a_down ) {
+      state_a_down = true;
+      heroHeal();
+    } 
   }
 }
 
