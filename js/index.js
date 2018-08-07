@@ -181,7 +181,11 @@ function heroHeal() {
       monster.attack(hero);
       monster.element.classList.remove("attacking");
       endTurn();
-      document.getElementsByClassName("skill-block")[0].style.display = "block";
+      if (hero.alive == false ) {
+        finish();
+      } else {
+        document.getElementsByClassName("skill-block")[0].style.display = "block";
+      }
     }, 500)
   }, 1500)
 }
