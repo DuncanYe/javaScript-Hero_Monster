@@ -47,8 +47,28 @@ class BaseCharacter{
   }
 
   heal() {
-    this.hp += this.cp
+    var heal = this.cp
+    this.hp += heal
     this.hp > this.maxHp ? this.hp = this.maxHp : this.hp;
+
+    var _this = this;
+
+      setTimeout(function() {
+        _this.element.getElementsByClassName("heal-text")[0].classList.add("healed");
+        _this.element.getElementsByClassName("heal-text")[0].textContent = heal;
+      }, 100);
+      setTimeout(function() {
+        _this.element.getElementsByClassName("heal-text")[0].classList.remove("healed");
+        _this.element.getElementsByClassName("heal-text")[0].textContent = "";
+      }, 1000);
+
+    // _this.id = setInterval(function () {
+      // _this.element.getElementsByClassName("heal-text")[0].classList.remove("healed");
+      // setTimeout(function() {
+      // }, 900 )
+      // clearInterval(_this.id);
+
+    // }, 50);
   }
 }
 
@@ -152,7 +172,7 @@ function heroHeal() {
 
   setTimeout(function() {
     hero.heal()
-  }, 300)
+  }, 100)
 
   setTimeout(function() {
     monster.element.classList.add("attacking");
@@ -162,7 +182,7 @@ function heroHeal() {
       endTurn();
       document.getElementsByClassName("skill-block")[0].style.display = "block";
     }, 500)
-  }, 700)
+  }, 1500)
 }
 
 function addSkillEvent(){
