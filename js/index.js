@@ -126,7 +126,7 @@ class Monster extends BaseCharacter {
 }
 
 var hero = new Hero('Duncan', 130, 30, 30);
-var monster = new Monster('Monster', 120, 20);
+var monster = new Monster('Monster', 120, 100);
 var rounds = 10;
 
 // 十回合限制
@@ -226,7 +226,7 @@ function startToPlay(){
 function finish() {
   var finish = document.getElementById("dialog")
   finish.style.display = "block";
-  if (hero == false){
+  if (hero.alive == false){
     dialog.classList.add("lose");
   } else {
     dialog.classList.add("win");
