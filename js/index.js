@@ -173,7 +173,7 @@ function heroHeal() {
 
   setTimeout(function() {
     hero.heal()
-  }, 100)
+  }, 150)
 
   setTimeout(function() {
     monster.element.classList.add("attacking");
@@ -198,18 +198,16 @@ function addSkillEvent(){
     heroHeal();
   }
 
-  var state_a_down = false;
   document.onkeyup = function(event) {
     var key = String.fromCharCode(event.keyCode);
-    if(key == 'A' && !state_a_down ) {
-      state_a_down = true;
+    if(key == 'A' && document.getElementsByClassName("skill-block")[0].style.display != "none" ) {
       heroAttack();
     } 
-    if(key == 'D' && !state_a_down ) {
-      state_a_down = true;
+    if (key == 'D' && document.getElementsByClassName("skill-block")[0].style.display != "none" ) {
       heroHeal();
     } 
   }
+
 }
 
 function startToPlay(){
@@ -231,5 +229,9 @@ function finish() {
   }
 }
 
+function key() {
+  
+}
+key();
 addSkillEvent();
 // startToPlay();
