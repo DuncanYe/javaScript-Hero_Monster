@@ -125,8 +125,8 @@ class Monster extends BaseCharacter {
   }
 }
 
-var hero = new Hero('Duncan', 130, 30, 30);
-var monster = new Monster('Monster', 120, 100);
+var hero = new Hero('Duncan', 130, 40, 30);
+var monster = new Monster('Monster', 120, 40);
 var rounds = 10;
 
 // 十回合限制
@@ -204,10 +204,11 @@ function addSkillEvent(){
 
   document.onkeyup = function(event) {
     var key = String.fromCharCode(event.keyCode);
-    if(key == 'A' && document.getElementsByClassName("skill-block")[0].style.display != "none" ) {
+    var skillNone = document.getElementsByClassName("skill-block")[0].style.display != "none"
+    if(key == 'A' && skillNone ) {
       heroAttack();
     } 
-    if (key == 'D' && document.getElementsByClassName("skill-block")[0].style.display != "none" ) {
+    if (key == 'D' && skillNone ) {
       heroHeal();
     } 
   }
