@@ -1,3 +1,13 @@
+// new Js method in this little game.
+
+// **The setInterval()** method will continue calling the function until clearInterval() is called, or the window is closed.
+
+// **The setTimeout()** method calls a function or evaluates an expression after a specified number of milliseconds.
+
+// **Math.random** is JS method, Return a random number between 0 (inclusive) and 1 (exclusive)
+
+// **Math.floor** is JS method, Round a number downward to its nearest integer
+
 class BaseCharacter{
   constructor(name, hp, ap, cp){
     this.name = name;
@@ -87,7 +97,9 @@ class Hero extends BaseCharacter {
     console.log('招喚英雄 ' + this.name + '！')
   }
   attack(character){
+    // Math.random is JS method, Return a random number between 0 (inclusive) and 1 (exclusive)
     var damage = Math.random() * (this.ap / 2) + (this.ap / 2);
+    // Math.floor is JS method, Round a number downward to its nearest integer
     super.attack(character, Math.floor(damage));
   }
   getHurt(damage) {
